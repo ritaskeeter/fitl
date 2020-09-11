@@ -38,3 +38,5 @@ Route::get('about', 'PageController@aboutpage'); //It says that when the about U
     //return view('pages/about'); //Display the PHP file in the pages folder
 
 Route::get('contact', 'PageController@contactpage');
+
+Route::get('questions/{question}', 'QuestionController@show');

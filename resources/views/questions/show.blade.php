@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title><?php echo $object->title; ?></title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -36,11 +36,16 @@
         </style>
     </head>
     <body>
-        <div class="container">
-            <div class="content">
-                <h1>Show Questions</h1>
-                <p>Questions will be added...</p>
-            </div>
-        </div>
+        <!--This displays the value specified in the URL in the webpage
+            For example: if URL is https://fitl-app-basic.local/object.php?variable=myValue,
+            it will display "myValue" in the webpage
+            <?php //echo $_REQUEST['variable']; ?>
+        -->
+        <h1><?php echo $object->title; ?></h1>
+        <p><?php echo $object->description; ?></p>
+            <pre>
+                <?php echo $object->code; ?>
+            </pre>
+        <p>Question Date: <?php echo $object->created_at; ?></p>
     </body>
 </html>

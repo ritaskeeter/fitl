@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+//Added by me to use Question model
+use App\Question;
+
 class QuestionController extends Controller
 {
     /**
@@ -49,9 +52,14 @@ class QuestionController extends Controller
     public function show($id)
     {
         //Display the value(id) passed in the URL
-        echo $id;
+        //echo $id;
         //Display the show.blade.php file under the questions folder
-        return view('questions/show');
+        $data=array();
+        //$data['id']=$id;
+        //$question=Question::find($id);
+        $question=Question::findOrFail($id); //For error message, it is findOrFail and not just find
+        $data['object']=$question;
+        return view('questions/show', $data);
     }
 
     /**

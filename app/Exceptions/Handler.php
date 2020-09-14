@@ -42,9 +42,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
+        //Added by me
+        if ($e 
+            instanceof
+            \Illuminate\Database\Eloquent\ModelNotFoundException) 
+        {
+          abort(404); //Add status code as required
         }
+        //Code added by me ends above
+
+        //Below 3 lines are commented out by me
+        //if ($e instanceof ModelNotFoundException) {
+        //    $e = new NotFoundHttpException($e->getMessage(), $e);
+        //}
 
         return parent::render($request, $e);
     }

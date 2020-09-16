@@ -23,7 +23,7 @@ class QuestionController extends Controller
         $question = Question::all();
 
         $data = array();
-        $data['objects'] = $question;
+        $data['my_objects'] = $question;
         return view('questions.index', $data);
     }
 
@@ -63,7 +63,7 @@ class QuestionController extends Controller
         //$data['id']=$id;
         //$question=Question::find($id);
         $question=Question::findOrFail($id); //For error message, it is findOrFail and not just find
-        $data['object']=$question;
+        $data['single_object']=$question;
         return view('questions/show', $data);
     }
 

@@ -12,7 +12,7 @@
 
 
 @section('content')
-<h1><?php echo $single_object->title; ?></h1>
+<h3><?php echo $single_object->title; ?></h3>
 <p><?php echo $single_object->description; ?></p>
     <pre>
         <?php echo $single_object->code; ?>

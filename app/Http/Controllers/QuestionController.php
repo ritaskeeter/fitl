@@ -35,6 +35,10 @@ class QuestionController extends Controller
     public function create()
     {
         //
+        $create_question=new Question;
+        $data=array();
+        $data['new_question']=$create_question;
+        return view('questions.create', $data);
     }
 
     /**
@@ -45,7 +49,12 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+        echo '<pre>';
+        print_r($request);
+        echo '<pre>';
+        **/
+        
     }
 
     /**

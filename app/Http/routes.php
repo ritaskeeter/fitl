@@ -39,6 +39,8 @@ Route::get('about', 'PageController@aboutpage'); //It says that when the about U
 
 Route::get('contact', 'PageController@contactpage');
 
+Route::post('questions/store', 'QuestionController@store');
+Route::get('questions/create', 'QuestionController@create');
 Route::get('questions/{question}', 'QuestionController@show');
 
 Route::get('questions', 'QuestionController@index');

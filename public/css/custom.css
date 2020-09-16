@@ -1,0 +1,13 @@
+/*Customization for Footer */
+
+.footer{
+	color: black;
+	font-size: 0.9em;
+	border-top: 1px solid;
+	margin-top: 2em;
+	padding: 1em 0;
+}
+
+h3{
+	margin-top: 2em;
+}

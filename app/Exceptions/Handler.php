@@ -43,9 +43,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         //Added by me
-        if ($e 
-            instanceof
-            \Illuminate\Database\Eloquent\ModelNotFoundException) 
+        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) 
         {
           abort(404); //Add status code as required
         }

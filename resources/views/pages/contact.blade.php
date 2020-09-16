@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>My Title</title>
-		<style type="text/css">
-			h1, p{
-				font: 'Lado';
-				font-size: 50px;
-			}
+@extends('layouts.master')
 
-			p{
-				color: red;
-			}
-		</style>
-	</head>
-
-	<body>
-		<h1>Contact details</h1>
+@section('content')
+	<h3>Contact details</h3>
 		<p>Name: Sona</p>
 		<p>Email Address: sona@gmail.com</p>
-	</body>
-</html>
+@endsection

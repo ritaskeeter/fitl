@@ -54,7 +54,28 @@ class QuestionController extends Controller
         print_r($request);
         echo '<pre>';
         **/
-        
+        //Create a new object model
+        $question=new Question;
+
+        //Get the form values and map them to DB
+        $question->title=$request->title;
+        $question->description=$request->description;
+        $question->code=$request->code;
+
+        //Error message if the required fields are not filled
+        if(!$question->save()){
+            $errors=$question->getErrors();
+
+            return redirect()
+                ->action('QuestionController@create')
+                ->with('errors', $errors)
+                ->withInput();
+        }
+
+        //Success action for submission
+        return redirect()
+            ->action('QuestionController@index')
+            ->with('message', '<div class="alert alert-success">Question created successfully</div>');
     }
 
     /**

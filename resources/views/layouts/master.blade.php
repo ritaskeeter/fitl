@@ -17,6 +17,8 @@
 
 		{{--Enclose content within container class--}}
 		<div class="container">
+			@include('shared.errors')
+			@include('shared.message')
 		@yield('content')
 		</div>
 

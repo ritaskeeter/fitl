@@ -106,6 +106,8 @@ class QuestionController extends Controller
     public function edit($id)
     {
         //
+        $question=Question::findOrFail($id);
+        return view('questions.edit', ['question'=>$question]);
     }
 
     /**
@@ -118,6 +120,27 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $question=Question::findOrFail($id);
+
+        //Get the form values and map them to DB
+        $question->title=$request->title;
+        $question->description=$request->description;
+        $question->code=$request->code;
+
+        //Error message if the required fields are not filled
+        if(!$question->save()){
+            $errors=$question->getErrors();
+
+            return redirect()
+                ->action('QuestionController@edit', $question->id)
+                ->with('errors', $errors)
+                ->withInput();
+        }
+
+        //Success action for submission
+        return redirect()
+            ->action('QuestionController@index')
+            ->with('message', '<div class="alert alert-success">Question has been updated</div>');
     }
 
     /**

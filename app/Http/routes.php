@@ -39,6 +39,8 @@ Route::get('about', 'PageController@aboutpage'); //It says that when the about U
 
 Route::get('contact', 'PageController@contactpage');
 
+Route::delete('questions/{question}', 'QuestionController@destroy');
+
 Route::get('questions/{question}/edit', 'QuestionController@edit');
 Route::put('questions/{question}', 'QuestionController@update');
 

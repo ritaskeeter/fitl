@@ -14,7 +14,7 @@ ErrorException in d99a45357c94deb9005704f7e04b32b6 line 3:
 Call to a member function all() on null (View: /home/vagrant/code/fitl/resources/views/shared/errors.blade.php) (View: /home/vagrant/code/fitl/resources/views/shared/errors.blade.php) (View: /home/vagrant/code/fitl/resources/views/shared/errors.blade.php)
 -->
 
-@if ( Session::has('errors') )
+@if ( $errors->any() )
 <div class="alert alert-danger">
 	@foreach ($errors->all() as $error)
 	{{ $error }}<br>

@@ -31,6 +31,9 @@
 		{{--Added by me--}}
 		<script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.js') }}"></script>
+
+		{{--Custom JS script added my me--}}
+		<script src="{{ asset('js/app.js') }}"></script>
 		{{--End of JS and jQuery files--}}
 	</body>
 </html>

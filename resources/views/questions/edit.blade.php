@@ -14,9 +14,10 @@
 	]) !!}
 
     @include('questions.partials.object_form')
-
-    <button class="btn btn-primary" type="submit">Update</button>
+    <button class="btn btn-success" type="submit">Update</button>
 	
 {!! Form::close()!!}
+
+@include('questions.partials.delete_object')
 
 @endsection

@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Update a Question')
+@section('title', 'Edit the Question')
 
 @section('content')
 <div class="page-header">
-	<h3>Update a Question</h3>
+	<h3>Edit the Question</h3>
 </div>
 
 {!! Form::model($question, 
@@ -14,7 +14,7 @@
 	]) !!}
 
     @include('questions.partials.object_form')
-    <button class="btn btn-success" type="submit">Update</button>
+    <button class="btn btn-success" type="submit">Save changes</button>
 	
 {!! Form::close()!!}
 

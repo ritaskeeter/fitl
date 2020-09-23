@@ -15,7 +15,7 @@ Call to a member function all() on null (View: /home/vagrant/code/fitl/resources
 -->
 
 @if ( $errors->any() )
-<div class="alert alert-danger">
+<div class="alert alert-danger" role="alert">
 	@foreach ($errors->all() as $error)
 	{{ $error }}<br>
 	@endforeach

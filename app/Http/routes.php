@@ -37,6 +37,10 @@ Route::get('about', 'PageController@aboutpage'); //It says that when the about U
 
     //return view('pages/about'); //Display the PHP file in the pages folder
 
+//comments are nested under questions below and link to the route in comments...create.blade.php
+Route::resource('questions.comments', 'QuestionCommentsController',
+				['only'=>['store', 'update', 'destroy']]);
+
 Route::get('contact', 'PageController@contactpage');
 
 Route::delete('questions/{question}', 'QuestionController@destroy');

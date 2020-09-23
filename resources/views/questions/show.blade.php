@@ -25,11 +25,7 @@
     
 <p style="margin-top: 2em;">Question Date: <?php echo $single_object->created_at; ?></p>
 
-<h3>Comments</h3>
-@foreach($single_object->comments as $comment)
-	<p>{{ $comment->comment }}</p>
-	<div small>{{ $comment->created_at->diffForHumans() }}</small></div>
-@endforeach
-{{--diffForHumans is a built-in function that displays time as "weeks ago, day ago, etc"--}}
+@include('questions.comments.partials.display')
+
 @endsection
 

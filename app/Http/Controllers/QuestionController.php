@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 //Added by me to use Question model
 use App\Question;
+use App\Language;
 
 class QuestionController extends Controller
 {
@@ -37,7 +38,14 @@ class QuestionController extends Controller
         //
         $create_question=new Question;
         $data=array();
-        $data['new_question']=$create_question;
+        $data['question']=$create_question;
+
+        //$data['languages']=Language::all(); 
+        //The below is to get the values in the format required for Bootstrap
+        $data['languages']=Language::lists('name', 'id');
+        //echo '<pre>';
+        //print_r($data['languages']);
+        //echo '</pre>';
         return view('questions.create', $data);
     }
 
@@ -73,6 +81,9 @@ class QuestionController extends Controller
         }
 
         //Success action for submission
+        //Adding it here so that the sync happens only after the object/question is created
+        $question->languages()->sync($request->language_id);
+        
         return redirect()
             ->action('QuestionController@index')
             ->with('message', '<div class="alert alert-success">Question created successfully</div>');
@@ -107,7 +118,8 @@ class QuestionController extends Controller
     {
         //
         $question=Question::findOrFail($id);
-        return view('questions.edit', ['question'=>$question]);
+        $all_languages=Language::lists('name', 'id');
+        return view('questions.edit', ['question'=>$question, 'languages'=>$all_languages]);
     }
 
     /**
@@ -126,6 +138,7 @@ class QuestionController extends Controller
         $question->title=$request->title;
         $question->description=$request->description;
         $question->code=$request->code;
+        $question->languages()->sync($request->language_id);
 
         //Error message if the required fields are not filled
         if(!$question->save()){

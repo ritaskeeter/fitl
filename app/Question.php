@@ -17,4 +17,9 @@ class Question extends Model
 		return $this->hasMany('App\Comments')->orderBy('created_at', 'desc');
 	}
 	//End of addition-$this references the Question object and App\Comment references the Comment model
+
+	//Added by me
+	public function languages(){
+		return $this->belongsToMany('App\Language', 'questions_languages');
+	}
 }

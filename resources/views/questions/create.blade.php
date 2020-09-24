@@ -7,7 +7,7 @@
 	<h3>Submit a Question</h3>
 </div>
 
-{!! Form::model($new_question, ['action'=>'QuestionController@store']) !!}
+{!! Form::model($question, ['action'=>'QuestionController@store']) !!}
 
     @include('questions.partials.object_form')
 

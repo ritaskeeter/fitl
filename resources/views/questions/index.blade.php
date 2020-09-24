@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="page-header">
+	<a href="{{ url('questions/create') }}"button class="btn btn-success float-right">New Question</button></a>
 	<h3>My Questions</h3>
 </div>
 

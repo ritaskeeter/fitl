@@ -13,4 +13,13 @@
 	{!! Form::textarea('code', null, ['class'=>'form-control']) !!}
 </div>
 
+<div class="form-group">
+	{!! Form::label('language_id[]', 'Programming Languages') !!}
+	{!! Form::select('language_id[]', 
+		$languages,
+		$question->languages->lists('id')->all(),
+		['multiple'=>true, 'class'=>'form-control']
+	) !!}
+</div>
+
 {{--The above codes refers to the class defined here - <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">--}}

@@ -107,6 +107,6 @@ class QuestionCommentsController extends Controller
 
         return redirect()
             ->action('QuestionController@show', $questionID)
-            ->with('message', '<div class="alert alert-info" id="alert-sona">Comment deleted</div>');
+            ->with('message', '<div class="mt-2 alert alert-info">Comment deleted</div>');
     }
 }

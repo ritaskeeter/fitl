@@ -54,3 +54,5 @@ Route::get('questions/create', 'QuestionController@create');
 Route::get('questions/{question}', 'QuestionController@show');
 
 Route::get('questions', 'QuestionController@index');
+
+Route::resource('languages', 'LanguageController');

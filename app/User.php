@@ -36,4 +36,30 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function getFirstNameAttribute()
+    {
+        $name=$this->name;
+        $name_parts=explode(' ', $name);
+        $first_name=$name_parts[0];
+        return $first_name;
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'user_roles');
+    }
+
+    public function hasRole($role)
+    {
+        //Get the name of the role(name alone) from the user's roles
+        $roleNames=$this->roles->pluck('name')->toArray();
+        //Check if role is in array of all roles and then return it
+        return in_array($role, $roleNames);
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole('Admin');
+    }
 }

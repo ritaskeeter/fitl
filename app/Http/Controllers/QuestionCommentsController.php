@@ -9,9 +9,14 @@ use App\Http\Controllers\Controller;
 
 //Added by me to use Comments model PHP file
 use App\Comments;
+use Auth;
 
 class QuestionCommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only'=>['create', 'store', 'edit', 'update', 'destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +40,7 @@ class QuestionCommentsController extends Controller
 
         $comment->question_id=$questionID;
         $comment->comment = $request->comment;
+        $comment->user_id = Auth::user()->id;
 
         if(!$comment->save())
         {
@@ -76,6 +82,11 @@ class QuestionCommentsController extends Controller
     {
         //
         $comment = Comments::findOrFail($id);
+        if(!$comment->canEdit())
+        {
+            abort('403', 'You are not authorized to perform this action');
+        }
+
         $comment->comment = $request->comment;
 
         if(!$comment->save())
@@ -102,6 +113,11 @@ class QuestionCommentsController extends Controller
     public function destroy($questionID, $id)
     {
         $comment=Comments::findOrFail($id);
+
+        if(!$comment->canEdit())
+        {
+            abort('403', 'You are not authorized to perform this action');
+        }
 
         $comment->delete();
 

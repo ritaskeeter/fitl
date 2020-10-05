@@ -62,4 +62,15 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasRole('Admin');
     }
+
+    //Added by me to associate users to questions
+    public function questions()
+    {
+        return $this->hasMany('App\Question');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comments');
+    }
 }

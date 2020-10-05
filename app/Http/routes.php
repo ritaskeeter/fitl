@@ -73,6 +73,4 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //Profile
-Route::get('profile', function(){
-	return view('profile/profile');
-});
+Route::get('profile', 'ProfileController@profile');

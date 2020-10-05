@@ -1,29 +1,30 @@
 @extends('layouts.master')
 
 {{--Blade comment syntax->Add comments within this--}}
-{{--@section ('title', $single_object->title)--}}
+{{--@section ('title', $questions->title)--}}
 
 {{--***IMPORTANT***--}}
 {{-- There must be no space between @section and ('title'). Otherwise there would be a "cannot end section error"-- @endsection--}}
 
 @section('title')
-<?php echo $single_object->title; ?>
+<?php echo $questions->title; ?>
 @endsection 
 
 
 @section('content')
 <div class="page-header">
-	<a href="{{ action('QuestionController@edit', $single_object->id) }}"
+	<a href="{{ action('QuestionController@edit', $questions->id) }}"
 		class="btn btn-info float-right">Edit</a>
 		{{--float-right will display the button on the right hand side--}}
-<h3><?php echo $single_object->title; ?></h3>
+<h3><?php echo $questions->title; ?></h3>
 </div>
 
-<p><?php echo $single_object->description; ?></p>
+<p><?php echo $questions->description; ?></p>
     
-        <code><?php echo $single_object->code; ?></code>
+        <code style="color:white;
+	background-color: black; padding: 1em;"><?php echo $questions->code; ?></code>
     
-<p style="margin-top: 2em;">Question Date: <?php echo $single_object->created_at; ?></p>
+<p style="margin-top: 2em;">Question Date: <?php echo $questions->created_at; ?></p>
 
 @include('questions.comments.partials.display')
 

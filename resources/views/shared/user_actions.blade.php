@@ -7,6 +7,7 @@
 		{{ Auth::user()->first_name }}<span class="caret"></span></a>
 
 		<ul class="dropdown-menu dropdown-menu-right" id="logout-button">
+			<li><a class="dropdown-item" href="{{ action('ProfileController@profile') }}">Profile</a></li>
 			<li><a class="dropdown-item" href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
 		</ul>
 	</li>

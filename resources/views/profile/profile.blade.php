@@ -17,10 +17,25 @@
 @endif
 
 <h3>Roles</h3>
-	<ul>
-		@foreach(Auth::user()->roles as $role)
+<ul>
+	@foreach(Auth::user()->roles as $role)
 		<li>{{ $role->name }}</li>
-		@endforeach
-	</ul>
+	@endforeach
+</ul>
+
+<h3>Submitted Questions:</h3>
+	@include('questions.partials.questions', ['questions'=>$questions])
+	
+<h3>Comments:</h3>
+<ul class="list-group">
+@foreach($comments as $comment)
+	<li class="list-group-item">
+		<div class="text-muted">
+			<small>{{ $comment->created_at->diffForHumans() }}</small>
+		</div>
+		<p><small>Question: </small><strong>{{ $comment->question->title }}</strong></p>
+		<p>{{ $comment->comment }}</p>
+	</li>
+@endforeach
 
 @endsection

@@ -1,5 +1,5 @@
 <h5>Add your comments below:</h5>
-{!! Form::open(['route'=>['questions.comments.store', $single_object->id]]) !!}
+{!! Form::open(['route'=>['questions.comments.store', $questions->id]]) !!}
 
 @include('questions.comments.partials.comment_form')
 

@@ -5,6 +5,8 @@ namespace App;
 //use Illuminate\Database\Eloquent\Model;
 use \Esensi\Model\Model;
 
+use Auth;
+
 class Question extends Model
 {
 	protected $rules=[
@@ -21,5 +23,32 @@ class Question extends Model
 	//Added by me
 	public function languages(){
 		return $this->belongsToMany('App\Language', 'questions_languages');
+	}
+
+	//Added by me
+	public function user()
+	{
+		return $this->belongsToMany('App\User');
+	}
+
+	//Check if user is logged in and whether it is their question to allow them to edit/delete
+	public function canEdit()
+	{
+		if(!Auth::check())
+		{
+			return false;
+		}
+		//If the user is active/logged in, return true so that we can display user's specific objects
+		if(Auth::user()->id===$this->user_id)
+		{
+			return true;
+		}
+		//By default
+		return false;
+	}
+
+	public function comment()
+	{
+		return $this->belongsToMany('App\Comments');
 	}
 }

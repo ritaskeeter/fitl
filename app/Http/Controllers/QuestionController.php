@@ -10,9 +10,15 @@ use App\Http\Controllers\Controller;
 //Added by me to use Question model
 use App\Question;
 use App\Language;
+use Auth;
 
 class QuestionController extends Controller
 {
+    //Added by me to ensure that only logged in users have access to modify questions
+    public function __construct()
+    {
+        $this->middleware('auth', ['only'=>['create', 'store', 'edit', 'update', 'destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,7 @@ class QuestionController extends Controller
         $question = Question::all();
 
         $data = array();
-        $data['my_objects'] = $question;
+        $data['questions'] = $question;
 
         //Added after sometime
         $data['languages']=Language::all();
@@ -72,6 +78,7 @@ class QuestionController extends Controller
         $question->title=$request->title;
         $question->description=$request->description;
         $question->code=$request->code;
+        $question->user_id=Auth::user()->id;
 
         //Error message if the required fields are not filled
         if(!$question->save()){
@@ -107,7 +114,7 @@ class QuestionController extends Controller
         //$data['id']=$id;
         //$question=Question::find($id);
         $question=Question::findOrFail($id); //For error message, it is findOrFail and not just find
-        $data['single_object']=$question;
+        $data['questions']=$question;
         return view('questions/show', $data);
     }
 
@@ -121,8 +128,16 @@ class QuestionController extends Controller
     {
         //
         $question=Question::findOrFail($id);
+
+        //Check if user is logged in and so has access to edit
+        if(!$question->canEdit())
+        {
+            abort('403', 'You are not authorized to perform this action');
+        }
+
         $all_languages=Language::lists('name', 'id');
         return view('questions.edit', ['question'=>$question, 'languages'=>$all_languages]);
+
     }
 
     /**
@@ -169,6 +184,12 @@ class QuestionController extends Controller
     {
         //
         $question=Question::findOrFail($id);
+
+        if(!$question->canEdit())
+        {
+            abort('403', 'You are not authorized to perform this action');
+        }
+
         $question->delete(); //In-built function
 
         return redirect()

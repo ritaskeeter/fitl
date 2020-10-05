@@ -33,7 +33,7 @@
 		<div class="text-muted">
 			<small>{{ $comment->created_at->diffForHumans() }}</small>
 		</div>
-		<p><small>Question: </small><strong>{{ $comment->question->title }}</strong></p>
+		<p><small>Question: </small><strong><a href="{{ url('questions',[$comment->question->id]) }}">{{ $comment->question->title }}</strong></p></a>
 		<p>{{ $comment->comment }}</p>
 	</li>
 @endforeach

@@ -74,3 +74,12 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 //Profile
 Route::get('profile', 'ProfileController@profile');
+
+//Routing based on AdminMiddleware to control access based on Admin role
+//namespace says that the controller will be contained in the Admin subdirectory
+//prefix says that "admin" will be added as a prefix to the "users" URL
+//middleware says that we are using the middleware defined in the kernel.php file
+Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'admin'], function()
+{
+	Route::resource('users', 'UserController');
+});

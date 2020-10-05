@@ -20,10 +20,9 @@
 </div>
 
 <p><?php echo $questions->description; ?></p>
-    
-        <code style="color:white;
-	background-color: black; padding: 1em;"><?php echo $questions->code; ?></code>
-    
+
+        <code id="code-box"><?php echo $questions->code; ?></code>
+
 <p style="margin-top: 2em;">Question Date: <?php echo $questions->created_at; ?></p>
 
 @include('questions.comments.partials.display')

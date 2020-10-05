@@ -1,5 +1,5 @@
 {!! Form::open([
-	'route'=>['questions.comments.destroy', $single_object->id, $comment->id],
+	'route'=>['questions.comments.destroy', $questions->id, $comment->id],
 	'method'=>'delete'
 	]) !!}
 

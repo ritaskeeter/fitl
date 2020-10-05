@@ -18,3 +18,12 @@ $('.edit-object').click(function(e){
 	//If hide class is present toggle it and display form otherwise hide it
 	$commentForm.toggleClass('collapse');
 });
+
+
+if($('#code-box').text().length >0)
+{
+	$('#code-box').css({
+		"background-color":"blue", 
+		"padding":"1em"
+	});
+}

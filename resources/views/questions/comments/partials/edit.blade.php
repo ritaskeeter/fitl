@@ -1,6 +1,6 @@
 {!! Form::model($comment,
 	[
-		'route'=>['questions.comments.update', $single_object->id, $comment->id],
+		'route'=>['questions.comments.update', $questions->id, $comment->id],
 		'method'=>'put',
 		'class'=>'collapse edit-object-form'
 	]) !!}
